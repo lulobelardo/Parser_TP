@@ -18,9 +18,11 @@ void arbol_destruir(ANodo * nodo) {
   if (nodo == NULL)
     return;
 
-  if (nodo->hijo)
+  if (nodo->hijo) {
     for (int i = 0; i < LARGO_ALFABETO; i++)
       arbol_destruir(nodo->hijo[i]);
+    free(nodo->hijo);
+  }
   
   free(nodo);
 }
