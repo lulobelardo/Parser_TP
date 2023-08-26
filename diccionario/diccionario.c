@@ -2,6 +2,7 @@
 
 /*
  * Devuelve un diccionario con las palabras contenidas en el archivo.
+ * Lee letra por letra y 'almacena' las palabras en el diccionario.
  */
 Diccionario diccionario_crear(FILE * archivoDiccionario) {
   Diccionario diccionario = arbol_nodo_crear();
@@ -12,15 +13,14 @@ Diccionario diccionario_crear(FILE * archivoDiccionario) {
   do {
     letra = getc(archivoDiccionario);
     
-    if(es_terminador(letra))
+    if (es_terminador(letra))
       nodoActual = arbol_validar_nodo(nodoActual, diccionario);
-    else if((letraTraducida = validar_y_traducir_caracter(letra)) != -1)
+    else if ((letraTraducida = validar_y_traducir_caracter(letra)) != -1)
       nodoActual = arbol_desplazarse(nodoActual, letraTraducida);
     else {
       // Error, caracter invalido en el diccionario
-      indicadorError = 1;
-      
-      letra = EOF;
+      indicadorError = 1; // Sin esto, funciona igual hasta donde llegó
+      letra = EOF; // Sin esto, lee todo el archivo igualmente
     }
   } while(letra != EOF);
 

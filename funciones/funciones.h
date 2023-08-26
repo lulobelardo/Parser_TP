@@ -8,9 +8,9 @@
 
 #include <stdio.h> // Manejo de archivos
 #include <assert.h> // Chequeo de correcto asignamiento de memoria y argumentos
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
+#include <stdlib.h> // Manejo de memoria
+#include <ctype.h> // toupper, isaplha
+#include <string.h> // strlen, strcat, strncat
 
 #define LARGO_TENTATIVO 128
 
@@ -39,6 +39,14 @@ void vaciar_cadena(char *);
  */
 int cadena_es_vacia(char *);
 
+/*
+ * Toma un LARGO_MAXIMO y un archivo.
+ * Devuelve una cadena con los valores de la linea a donde apunta el archivo.
+ * El objetivo de esta funcion es reemplazar fgets, evitando tener un límite
+ * fijo de memoria y evitando crear variables con cantidad abultada de memoria, 
+ * sabiendo que es un archivo de texto escrito por alguien y no va a tener 
+ * demasiadas lineas.
+ */
 char * obtener_linea_de_archivo(size_t, FILE *);
 
 #endif /* __FUNCIONES_H__ */

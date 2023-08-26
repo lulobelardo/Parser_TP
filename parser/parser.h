@@ -1,29 +1,56 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
-#include <string.h>
+/*
+ * parser.h: define los datos e implementa las funciones necesarias para el 
+ * funcionamiento del analizador-sitáctico / parser.
+*/
+
 #include "../cola/cola.h"
 #include "../diccionario/diccionario.h"
 #include "../caracter/caracter.h"
 #include "../archivos/archivos.h"
 #include "../funciones/funciones.h"
+#include <string.h> //strcat, strncat, strlen
 
-#define LARGO_MAXIMO 131072
+#define LARGO_MAXIMO 131072 // Largo máximo permitido de una linea de entrada
 
-typedef struct _LineaSalida {
+/*
+ * Tipo de dato que contiene el la linea de entrada corregida, la cantidad de 
+ * ' ' agregados y todos los caracteres eliminados.
+ */
+typedef struct _LineaDeSalida {
   char * resultado;
   int contadorEspaciosAgregados;
   Cola errores;
-} LineaSalida;
+} LineaDeSalida;
 
-LineaSalida lineaSalida_crear();
+/*
+ * Devuelve una LineaDeSalida nueva/vacía.
+ */
+LineaDeSalida lineaSalida_crear();
 
-void lineaSalida_destruir(LineaSalida linea);
+/*
+ * Destruye la lineaDeSalida.
+ */
+void lineaSalida_destruir(LineaDeSalida);
 
-LineaSalida parser_analizar_linea(Diccionario diccionario, char * lineaEntrada);
+/*
+ * Toma el diccionario y la linea a analizar y retorna la lineaDeSalida, la 
+ * cual contiene la linea corregida y los errores que tiene.
+ */
+LineaDeSalida parser_analizar_linea(Diccionario, char *);
 
+/*
+ * Toma los archivos abiertos y ejecuta el parser.
+ * Crea el diccionario y luego ejecuta el analizador linea por linea.
+ */
 int parser(Archivos *);
 
-LineaSalida imprimir_en_archivo(LineaSalida lineaSalida, FILE * archivo);
+/*
+ * Toma una LineaDeSalida y un archivo de escritura y escribe la linea 
+ * correctamente y sus errores. 
+ */
+LineaDeSalida imprimir_en_archivo(LineaDeSalida lineaSalida, FILE * archivo);
 
 #endif /* __PARSER_H__ */

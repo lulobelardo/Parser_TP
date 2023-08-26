@@ -39,27 +39,36 @@ int cadena_es_vacia(char * cadena) {
 }
 
 /*
- * Toma un LARGO_TENTATIVO, un LARGO_MAXIMO y un archivo.
+ * Toma un LARGO_MAXIMO y un archivo.
  * Devuelve una cadena con los valores de la linea a donde apunta el archivo.
- * 
+ * El objetivo de esta funcion es reemplazar fgets, evitando tener un límite
+ * fijo de memoria y evitando crear variables con cantidad abultada de memoria, 
+ * sabiendo que es un archivo de texto escrito por alguien y no va a tener 
+ * demasiadas lineas.
  */
 char * obtener_linea_de_archivo(size_t largoMaximo, FILE * archivo) {
-  char * lineaFinal = malloc(sizeof(char));
+  char * linea = malloc(sizeof(char));
+  assert(linea);
   vaciar_cadena(linea);
-  size_t largoActual = 0;
-  
-  char temp[LARGO_TENTATIVO];
-  int contador = 1;
-  do {
-    if (fgets(temp, LARGO_TENTATIVO, archivo)) {
-      size_t largoTemp = strlen(temp);
-      char * lineaNueva = realloc(linea, largoActual + largoTemp + 1);
+  size_t largoActual = 0; // Largo de la linea
 
-      largoActual += largoTemp;
+  size_t largoTentativo = LARGO_TENTATIVO;
+  if (LARGO_TENTATIVO > largoMaximo)
+    largoTentativo = largoMaximo;
+
+  char temp[largoTentativo];
+  size_t largoTemp = 0; // Largo la sublinea leída
+  do {
+    if (fgets(temp, largoTentativo, archivo)) {
+      largoTemp = strlen(temp);
+      linea = realloc(linea, largoActual + largoTemp + 1);
+      assert(linea);
 
       strcat(linea, temp);
+      largoActual += largoTemp;
     }
-  } while (strlen(temp) == LARGO_TENTATIVO - 1 && largoActual < largoMaximo);
+  } while (largoTemp == largoTentativo - 1 && largoActual < largoMaximo -
+                                                            largoTentativo);
   
   if (cadena_es_vacia(linea)) {
     free(linea);
