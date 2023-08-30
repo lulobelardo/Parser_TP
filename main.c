@@ -16,13 +16,17 @@
 */
 int main(int argc, char const *argv[]) {
   if (argc != 4) {
-    printf("Error: Archivos insuficientes. (Hay %d)\n", argc);
+    printf("Error: Archivos insuficientes. (Hay %d)\n", argc - 1);
     return 1;
   }
   
   Archivos * archivos = archivos_abrir(argv);
 
-  int errorCode = parser(archivos);
+  int errorCode = 0;
+  if(archivos)
+    errorCode = parser(archivos);
+  else
+    return 1;
 
   if(errorCode == 1)
     printf("Error: El archivo diciconario contiene un formato invalido.\n");

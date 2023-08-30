@@ -18,6 +18,7 @@ typedef struct _Archivos {
 
 /**
  * Abre los archivos [1]"r",[2]"r",[3]"w" y los devuelve.
+ * Si falla devuelve NULL;
  */
 Archivos * archivos_abrir(char const * []);
 

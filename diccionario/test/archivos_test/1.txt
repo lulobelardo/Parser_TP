@@ -1,0 +1,5 @@
+hola
+soy
+un
+ejemplo
+inválido

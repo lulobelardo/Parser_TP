@@ -2,19 +2,35 @@
 
 /**
  * Abre los archivos [1]"r",[2]"r",[3]"w" y los devuelve.
+ * Si falla devuelve NULL;
  */
 Archivos * archivos_abrir(char const * argv[]) {
   Archivos * archivos = malloc(sizeof(Archivos));
   assert(archivos);
 
   archivos->diccionario = fopen(argv[1], "r");
-  assert(archivos->diccionario);
+  if (!archivos->diccionario) {
+    printf("Error: Archivo Diccionario inaccesible.\n");
+    free(archivos);
+    return NULL;
+  }
 
   archivos->entrada = fopen(argv[2], "r");
-  assert(archivos->entrada);
+  if (!archivos->entrada) {
+    printf("Error: Archivo Entrada inaccesible.\n");
+    fclose(archivos->diccionario);
+    free(archivos);
+    return NULL;
+  }
 
   archivos->salida = fopen(argv[3], "w");
-  assert(archivos->salida);
+  if (!archivos->salida) {
+    printf("Error: Archivo Salida no pudo crearse/abrirse.\n");
+    fclose(archivos->diccionario);
+    fclose(archivos->entrada);
+    free(archivos);
+    return NULL;
+  }
 
   return archivos;
 }

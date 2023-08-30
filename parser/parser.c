@@ -128,11 +128,15 @@ int parser(Archivos * archivos) {
     return 1; // No admite errores en el diccionario
 
   char * lineaEntrada;
+
+  // Mientras la linea no sea vacía
   while ((lineaEntrada = obtener_linea_de_archivo(LARGO_MAXIMO, 
                                                   archivos->entrada))) {
+    // La analiza y corrige, retornandola corregida y con sus errores
     LineaDeSalida lineaSalida = parser_analizar_linea(diccionario, 
                                                       lineaEntrada);
 
+    // Imprime en pantalla el resultado
     lineaSalida = imprimir_en_archivo(lineaSalida, archivos->salida);
     
     lineaDeSalida_destruir(lineaSalida);
@@ -167,9 +171,9 @@ LineaDeSalida imprimir_en_archivo(LineaDeSalida lineaSalida, FILE * archivo) {
       while (!cola_vacia(lineaSalida.errores)) {
         char * caracterBorrado = (char *) cola_inicio(lineaSalida.errores);
         fputc(' ', archivo);
-        fputc('(', archivo);
+        fputc('[', archivo);
         fputc(*caracterBorrado, archivo);
-        fputc(')', archivo);
+        fputc(']', archivo);
         lineaSalida.errores = cola_desencolar(lineaSalida.errores, 
                                       (FuncionDestructora) caracter_destruir);
       }
