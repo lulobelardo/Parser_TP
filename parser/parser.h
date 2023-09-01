@@ -28,12 +28,12 @@ typedef struct _LineaDeSalida {
 /*
  * Devuelve una LineaDeSalida nueva/vacía.
  */
-LineaDeSalida lineaSalida_crear();
+LineaDeSalida lineaDeSalida_crear(size_t);
 
 /*
  * Destruye la lineaDeSalida.
  */
-void lineaSalida_destruir(LineaDeSalida);
+void lineaDeSalida_destruir(LineaDeSalida);
 
 /*
  * Toma el diccionario y la linea a analizar y retorna la lineaDeSalida, la 

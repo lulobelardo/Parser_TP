@@ -17,3 +17,10 @@ char * caracter_copiar(char const * caracter) {
   (*resultado) = (*caracter);
   return resultado;
 }
+
+/*
+ * Imprime el caracter en pantalla. (FuncionVisitante).
+ */
+void caracter_imprimir(char * caracter){
+  printf("%c ", * caracter);
+}

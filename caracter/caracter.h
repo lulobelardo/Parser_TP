@@ -7,6 +7,7 @@
 */
 
 #include <stdlib.h> // Manejo de memoria
+#include <stdio.h> // Printf
 #include <assert.h> // Chequeo de correcto asignamiento de memoria
 
 /**
@@ -19,5 +20,10 @@ void caracter_destruir(char *);
  * (FuncionCopia).
  */
 char * caracter_copiar(char const *);
+
+/*
+ * Imprime el caracter en pantalla. (FuncionVisitante).
+ */
+void caracter_imprimir(char *);
 
 #endif /* __CARACTER_H__ */

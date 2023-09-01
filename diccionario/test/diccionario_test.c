@@ -1,5 +1,8 @@
 #include "diccionario_test.h"
 
+/*
+ * Test de diccionario_crear
+ */
 void test_diccionario_crear() {
   FILE * fp = NULL;
 
@@ -19,9 +22,32 @@ void test_diccionario_crear() {
   13:N, 14:O, 15:P, 16:Q, 17:R, 18:S, 19:T, 20:U, 21:V, 22:W, 23:X, 24:Y, 25:Z
 */
 
-  int a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9;
-  int k = 10, l = 11, m = 12, n = 13, o = 14, p = 15, q = 16, r = 17, s = 18;
-  int t = 19, u = 20, v = 21, w = 22, x = 23, y = 24, z = 25;
+  int a = 0;
+  int b = 1;
+  int c = 2;
+  int d = 3;
+  int e = 4;
+  //int f = 5
+  //int g = 6
+  //int h = 7
+  int i = 8;
+  //int j = 9
+  //int k = 10
+  int l = 11;
+  //int m = 12
+  int n = 13;
+  int o = 14;
+  int p = 15;
+  int q = 16;
+  int r = 17;
+  int s = 18;
+  int t = 19;
+  int u = 20;
+  //int v = 21
+  //int w = 22
+  //int x = 23
+  //int y = 24
+  //int z = 25
 
 
   assert(diccionario->esFinDePalabra == 0);
@@ -62,3 +88,9 @@ void test_diccionario_crear() {
   diccionario_destruir(diccionario);
 }
 
+/*
+ * LLama a las funciones test_
+ */
+void test_diccionario() {
+  test_diccionario_crear();
+}
