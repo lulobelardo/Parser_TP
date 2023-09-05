@@ -53,6 +53,8 @@ void test_lista_agregar_final() {
 
   assert(l.primero->sig->sig == l.ultimo);
   assert(l.ultimo->sig == NULL);
+  
+  lista_destruir(l, (FuncionDestructora) caracter_destruir);
 }
 
 /*

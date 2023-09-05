@@ -136,7 +136,7 @@ int parser(Archivos * archivos) {
     LineaDeSalida lineaSalida = parser_analizar_linea(diccionario, 
                                                       lineaEntrada);
 
-    // Imprime en pantalla el resultado
+    // Imprime en archivo el resultado
     lineaSalida = imprimir_en_archivo(lineaSalida, archivos->salida);
     
     lineaDeSalida_destruir(lineaSalida);

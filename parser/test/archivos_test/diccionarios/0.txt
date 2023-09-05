@@ -3,5 +3,6 @@ recibira
 dolares
 recibi
 dolar
+es
 deposite
 DEPOSITO

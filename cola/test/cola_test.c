@@ -80,9 +80,9 @@ void test_cola_desencolar() {
     assert(cola_vacia(cola) == 0);
     assert((*(char *)cola_inicio(cola)) == 65);   
   }
-  for (int i = 66; i < 91; i++) {
-    cola_desencolar(cola, (FuncionDestructora) caracter_destruir);
+  for (int i = 65; i < 91; i++) {
     assert((*(char *)cola_inicio(cola)) == i);
+    cola = cola_desencolar(cola, (FuncionDestructora) caracter_destruir);
   }
 
   assert(cola_vacia(cola));
